@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { Value } from 'slate'
+
+import Editor from './components/EditorX'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const handleChangeValue = () => {}
+    return (
+        <div className='App'>
+            <Editor
+                value={Value.fromJSON({
+                    document: {
+                        nodes: [
+                            {
+                                object: 'block',
+                                type: 'paragraph',
+                                nodes: [
+                                    {
+                                        object: 'text',
+                                        text: '666666',
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                })}
+                onChange={handleChangeValue}
+            ></Editor>
+            <header className='App-header'>
+                <p>
+                    Edit <code>src/App.js</code> and save to reload.
+                </p>
+            </header>
+        </div>
+    )
 }
 
-export default App;
+export default App
