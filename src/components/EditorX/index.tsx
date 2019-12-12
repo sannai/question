@@ -31,12 +31,11 @@ const ShowVacancyButton = styled.button`
     top: -42px;
     box-sizing: border-box;
     display: block;
-    width: 100px;
-    height: 40px;
-    line-height: 40px;
+    height: 32px;
+    line-height: 32px;
     text-align: center;
-    border-radius: 8px;
-    font-size: 16px;
+    border-radius: 4px;
+    font-size: 14px;
     font-family: PingFang-SC-Medium;
     font-weight: 600;
     color: #fff;
@@ -55,6 +54,10 @@ const Space = styled.span`
     height: 18px;
     border-bottom: 2px solid #072979;
     margin: 0 8px;
+`
+
+const EditorWrap = styled(Editor)`
+    min-height: 80px;
 `
 
 const schema: SchemaProperties = {
@@ -88,7 +91,6 @@ interface IProps {
     readonly?: boolean
     showVacancy?: boolean
 }
-
 const EditorX: FC<IProps> = props => {
     const [value, setValue] = useState(props.value)
     const [showToolBar, setShowToolBar] = useState(false)
@@ -284,7 +286,7 @@ const EditorX: FC<IProps> = props => {
                 <ShowVacancyButton onMouseDown={event => onClickInline(event, 'space')}>插入填空</ShowVacancyButton>
             )}
             {props.readonly ? (
-                <Editor
+                <EditorWrap
                     placeholder='请在此输入正文'
                     value={props.value}
                     renderBlock={renderBlock}
@@ -294,7 +296,7 @@ const EditorX: FC<IProps> = props => {
                     readOnly
                 />
             ) : (
-                <Editor
+                <EditorWrap
                     placeholder='请在此输入正文'
                     ref={ref}
                     value={props.value}
